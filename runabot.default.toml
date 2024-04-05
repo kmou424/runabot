@@ -1,0 +1,11 @@
+[app]
+debug = false
+
+[bot]
+token = ''
+on_error = 'stop'
+on_stop = 'restart'
+
+[server]
+host = '127.0.0.1'
+port = 6060
