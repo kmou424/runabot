@@ -1,0 +1,11 @@
+version: 3
+
+silent: true
+
+includes:
+  build:
+    taskfile: ./build/Taskfile.yml
+    dir: ./build
+  scripts:
+    taskfile: ./scripts/Taskfile.yml
+    dir: ./scripts

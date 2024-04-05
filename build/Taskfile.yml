@@ -1,0 +1,44 @@
+version: 3
+
+tasks:
+  default:
+    dir: ../
+    aliases:
+      - build
+    cmds:
+      - CGO_ENABLED=0 go build -o ./build/runabot ./cmd/runabot
+      - defer: { task: build-postrun }
+
+  build-postrun:
+    internal: true
+    deps:
+      - build-postrun-windows
+
+  build-postrun-windows:
+    internal: true
+    platforms:
+      - windows
+    cmds:
+      - mv runabot runabot.exe
+
+  cleanup:
+    cmds:
+      - task: cleanup-windows
+      - task: cleanup-common
+  cleanup-windows:
+    internal: true
+    platforms:
+      - windows
+    cmd: rm runabot.exe
+  cleanup-common:
+    internal: true
+    platforms:
+      - linux
+      - darwin
+    cmd: rm runabot
+
+  # run dev
+  run:
+    dir: ../
+    cmds:
+      - go run ./cmd/runabot

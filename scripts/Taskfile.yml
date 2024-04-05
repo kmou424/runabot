@@ -1,0 +1,6 @@
+version: 3
+
+tasks:
+  config-gen:
+    dir: ../
+    cmd: go run ./scripts/config-gen
